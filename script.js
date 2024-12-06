@@ -21,23 +21,23 @@ const stuckText = document.querySelector("#stuckText");
 //1 - down
 player.wallFlag = false;
 for (const enemy of enemies){
-    enemy.movementFlag = -1;
-    enemy.speedFlag = 1;
+    enemy.movement = -1;
+    enemy.speed = 1;
 }
 
-enemies[1].speedFlag = 2;
-enemies[2].speedFlag = 3;
-enemies[3].speedFlag = 5;
+enemies[1].speed = 2;
+enemies[2].speed = 3;
+enemies[3].speed = 5;
 
 function moveEnemy(){
     for (const enemy of enemies){
         if(enemy.offsetTop <= 0){
-            enemy.movementFlag = 1;
+            enemy.movement = 1;
         }
         if (enemy.offsetTop >= window.innerHeight - 50){
-            enemy.movementFlag = -1;
+            enemy.movement = -1;
         }
-        enemy.style.setProperty('top', `${enemy.offsetTop + enemy.movementFlag*enemy.speedFlag}px`);
+        enemy.style.setProperty('top', `${enemy.offsetTop + enemy.movement*enemy.speed}px`);
     }
 }
 
@@ -85,7 +85,6 @@ function checkWin(){
                 goal.style.setProperty("visibility","hidden");
                 goal.classList.remove("win");
             }, 1000);
-            
         }
         
     }
