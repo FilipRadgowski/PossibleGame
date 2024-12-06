@@ -23,10 +23,12 @@ body {
 }
 
 #stuckText {
-    color:white;
-    box-shadow: 0 0 4px beige;
-    width: 5vw;
+    text-align: center;
     font-size: 2em;
+    color:white;
+    
+    
+    
 }
 
 #startGame:hover {
@@ -83,7 +85,32 @@ body {
         box-shadow: 0 0 7px beige;
     }
 }
+@keyframes stuck {
+    0% {
+        color:white;
+    }
+ 
+    50% {
+        color:red;
+    }
 
+    100% {
+        color:white;
+    }
+}
+@keyframes stuckExperiment {
+    0% {
+        background-color:black;
+    }
+ 
+    50% {
+        background-color:red;
+    }
+
+    100% {
+        background-color:black;
+    }
+}
 .pulsingClick {
     animation-name: pulsingclick;
     animation-duration: 2s;
@@ -97,6 +124,17 @@ body {
 .win {
     animation-name: win;
     animation-duration: 1s;
+}
+
+.stuck {
+    animation-name: stuck;
+    animation-duration: 0.85s;
+    animation-iteration-count: infinite;
+}
+.stuckExperiment {
+    animation-name: stuckExperiment;
+    animation-duration: 0.85s;
+    animation-iteration-count: infinite;
 }
 
 .actors {
@@ -118,6 +156,9 @@ body {
     background-color: blue;
     color: white;
 }
+
+
+
 
 .enemy {
     background-color: red;
@@ -148,4 +189,17 @@ body {
     align-items: center;
 
     position: absolute;
+}
+#wall0 {
+    left:280px;
+}
+#wall1 {
+    left:400px;
+    height: 50vh;
+    top: 50vh;
+}
+#wall2 {
+    left:400px;
+    height:40vh;
+    top:0vh;
 }

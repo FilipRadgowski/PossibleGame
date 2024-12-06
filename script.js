@@ -40,7 +40,7 @@ function moveEnemy(){
         enemy.style.setProperty('top', `${enemy.offsetTop + enemy.movement*enemy.speed}px`);
     }
 }
-
+let wallFlags = [];
 // the blocks getting freaky and smashing (into) eachother (consentually) 
 
 function checkCollision() {
@@ -53,7 +53,8 @@ function checkCollision() {
             player.style.setProperty("left", 10 +"px");
         }
     }   
-    for (const wall of walls){
+    for (let i=0;i<walls.length;i++){
+        wall = walls[i];
         wlcord = wall.getBoundingClientRect();
         plcord = player.getBoundingClientRect();
         let overlap = !(wlcord.right < plcord.left || wlcord.left > plcord.right || wlcord.bottom < plcord.top || wlcord.top > plcord.bottom);
@@ -64,6 +65,23 @@ function checkCollision() {
             player.wallFlag = false;
             stuckText.innerHTML = "Ur safe";
         }
+        
+        if (overlap){
+            wallFlags[i] = true;
+        }
+        else{
+            wallFlags[i] = false;
+        }
+    }
+    if (wallFlags.includes(true)) {
+        stuckText.innerHTML = "Stuck!";
+        stuckText.classList.add("stuck");
+        player.classList.add("stuckExperiment");
+    }
+    else {
+        stuckText.innerHTML = "Safe";
+        stuckText.classList.remove("stuck");
+        player.classList.remove("stuckExperiment");
     }
 }
 
@@ -73,6 +91,7 @@ function checkWin(){
     for (const goal of goals){
         glcord = goal.getBoundingClientRect();
         plcord = player.getBoundingClientRect();
+        
         let overlap = !(glcord.right < plcord.left || glcord.left > plcord.right || glcord.bottom < plcord.top || glcord.top > plcord.bottom);
         if (overlap){
             //goalsAchieved++;
@@ -108,14 +127,19 @@ document.addEventListener("keyup", e => {
 function playerMovement(){
     if(keys[87] && !keys[83]){
         player.style.setProperty("top",player.offsetTop - 1 +"px");
+        
     }
     if(keys[83] && !keys[87]){
         player.style.setProperty("top",player.offsetTop + 1 +"px");
+        
     }
-    if(keys[68] && !keys[65] && !player.wallFlag){
+    if (keys[68] && !keys[65] && !(wallFlags.includes(true))){
         player.style.setProperty("left",player.offsetLeft + 1 +"px");
+        
+
     }
-    if(keys[65] && !keys[68] && !player.wallFlag){
+    if (keys[65] && !keys[68] && !(wallFlags.includes(true))){
         player.style.setProperty("left",player.offsetLeft - 1 +"px");
+        
     }
 }
