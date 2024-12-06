@@ -33,6 +33,7 @@ body {
         transform: scale(0.97);
     }
 }
+
 @keyframes pulsingclick {
     0% {
         transform: scale(0.97);
@@ -51,44 +52,76 @@ body {
         box-shadow: 0 0 7px beige;
     }
 }
+@keyframes win{
+    0% {
+        transform: scale(1);
+        box-shadow:0 0 0px beige;
+    }
+    50%{
+        transform: scale(1.5);
+        box-shadow:0 0 7px beige;
+    }
+    100% {
+        transform: scale(2);
+        box-shadow: 0 0 10px bege;
+    }
+}
+
+
 .pulsingClick {
     animation-name: pulsingclick;
     animation-duration: 2s;
 }
-#player {
-    background-color: blue;
+
+.playerMove {
+    animation: pulsingclick;
+    animation-duration: 0.1s;
+}
+
+.actors {
     font-family: 'Comic Sans MS';
-    color: white;
     width: 1.7em;
     height: 1.7em;
-    left:10px;
-    
+
     border: 0.3em solid white;
     border-radius: 10px;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     position: absolute;
+}
+
+#player {
+    background-color: blue;
+    color: white;
+
+    left:10px;
 }
 
 .enemy {
     background-color: red;
-    font-family: 'Comic Sans MS';
     color: white;
-    width: 1.7em;
-    height: 1.7em;
-    left:10px;
-    
-    border: 0.3em solid white;
-    border-radius: 10px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    position: absolute;
 
     left: 100px;
+}
+.goal {
+    background-color: yellow;
+    color: black;
+
+    left:500px;
+}
+
+#enemy1 {
+    left:150px;
+    top:300px;
+}
+#enemy2 {
+    left:200px;
+    top:375px;
+}
+
+.hidden{
+    visibility: hidden;
 }
