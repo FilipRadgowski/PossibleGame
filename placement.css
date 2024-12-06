@@ -1,0 +1,27 @@
+#player{
+    left:10px;
+}
+
+#goal1 {
+    left:500px;
+    top:500px;
+}
+
+#enemy1 {
+    left:150px;
+    top:300px;
+}
+
+#enemy2 {
+    left:200px;
+    top:375px;
+}
+
+#enemy3 {
+    left:300px;
+    top:30px;
+}
+
+#wall0 {
+    left:280px;
+}

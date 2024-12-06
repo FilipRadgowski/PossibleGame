@@ -1,7 +1,7 @@
 const startButton = document.querySelector("#startGame");
 startButton.addEventListener("click",function(e){
     startButton.classList.add("pulsingClick");
-    setTimeout(function() {startButton.classList.remove("pulsingClick")},2000);
+    setTimeout(function(){startButton.classList.remove("pulsingClick")},2000);
     setInterval(moveEnemy, 10);
     setInterval(checkCollision, 10);
     setInterval(checkWin, 1);
@@ -16,27 +16,28 @@ const goals = document.querySelectorAll(".goal");
 const walls = document.querySelectorAll(".wall");
 const stuckText = document.querySelector("#stuckText");
 
+//movementFlag
 //-1 - up
 //1 - down
 player.wallFlag = false;
 for (const enemy of enemies){
-    enemy.movementFlag = -1;
-    enemy.speedFlag = 1;
+    enemy.movement = -1;
+    enemy.speed = 1;
 }
 
-enemies[1].speedFlag = 2;
-enemies[2].speedFlag = 3;
-enemies[3].speedFlag = 5;
+enemies[1].speed = 2;
+enemies[2].speed = 3;
+enemies[3].speed = 5;
 
 function moveEnemy(){
     for (const enemy of enemies){
         if(enemy.offsetTop <= 0){
-            enemy.movementFlag = 1;
+            enemy.movement = 1;
         }
         if (enemy.offsetTop >= window.innerHeight - 50){
-            enemy.movementFlag = -1;
+            enemy.movement = -1;
         }
-        enemy.style.setProperty('top', `${enemy.offsetTop + enemy.movementFlag*enemy.speedFlag}px`);
+        enemy.style.setProperty('top', `${enemy.offsetTop + enemy.movement*enemy.speed}px`);
     }
 }
 let wallFlags = [];
@@ -47,7 +48,7 @@ function checkCollision() {
         encord = enemy.getBoundingClientRect();
         plcord = player.getBoundingClientRect();
         let overlap = !(encord.right < plcord.left || encord.left > plcord.right || encord.bottom < plcord.top || encord.top > plcord.bottom);
-        if (overlap){
+        if(overlap){
             player.style.setProperty("top", window.innerHeight/2 + "px");
             player.style.setProperty("left", 10 +"px");
         }
@@ -57,6 +58,13 @@ function checkCollision() {
         wlcord = wall.getBoundingClientRect();
         plcord = player.getBoundingClientRect();
         let overlap = !(wlcord.right < plcord.left || wlcord.left > plcord.right || wlcord.bottom < plcord.top || wlcord.top > plcord.bottom);
+        if(overlap){
+            player.wallFlag = true;
+            stuckText.innerHTML = "Stuck!";
+        }else{
+            player.wallFlag = false;
+            stuckText.innerHTML = "Ur safe";
+        }
         
         if (overlap){
             wallFlags[i] = true;
@@ -86,7 +94,6 @@ function checkWin(){
         
         let overlap = !(glcord.right < plcord.left || glcord.left > plcord.right || glcord.bottom < plcord.top || glcord.top > plcord.bottom);
         if (overlap){
-            
             //goalsAchieved++;
             //if (goalsAchieved == goals.length) {
             player.style.setProperty("top", window.innerHeight/2 + "px");
@@ -97,7 +104,6 @@ function checkWin(){
                 goal.style.setProperty("visibility","hidden");
                 goal.classList.remove("win");
             }, 1000);
-            
         }
         
     }
@@ -118,13 +124,12 @@ document.addEventListener("keyup", e => {
 //key s - 83
 //key a - 65
 //key d - 68
-
 function playerMovement(){
-    if (keys[87] && !keys[83]){
+    if(keys[87] && !keys[83]){
         player.style.setProperty("top",player.offsetTop - 1 +"px");
         
     }
-    if (keys[83] && !keys[87]){
+    if(keys[83] && !keys[87]){
         player.style.setProperty("top",player.offsetTop + 1 +"px");
         
     }

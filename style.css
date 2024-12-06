@@ -2,15 +2,18 @@
     font-family: "Raleway", monospace;
     text-align: center;
 }
+
 body {
     background-color: black;
 }
+
 #title {
     text-align: center;
     font-size: 4.5em;
     color: white;
     text-shadow: 0 0 4px beige;
 }
+
 #startGame {
     font-size: 1.5em;
     border-radius: 5px;
@@ -18,6 +21,7 @@ body {
     border-width: 0px;
     margin-bottom:20px;
 }
+
 #stuckText {
     text-align: center;
     font-size: 2em;
@@ -26,10 +30,12 @@ body {
     
     
 }
+
 #startGame:hover {
     box-shadow:0 0 7px beige;
 
 }
+
 @keyframes buttonHover {
     0% {
         transform: scale(0.97);
@@ -60,6 +66,7 @@ body {
         box-shadow: 0 0 7px beige;
     }
 }
+
 @keyframes win {
     0% {
         transform: scale(1);
@@ -148,8 +155,6 @@ body {
 #player {
     background-color: blue;
     color: white;
-
-    left:10px;
 }
 
 
@@ -161,6 +166,7 @@ body {
 
     left: 100px;
 }
+
 .goal {
     background-color: yellow;
     color: black;
@@ -168,26 +174,10 @@ body {
     left:500px;
 }
 
-#goal2 {
-    left:500px;
-    top:500px;
-}
-#enemy1 {
-    left:150px;
-    top:300px;
-}
-#enemy2 {
-    left:200px;
-    top:375px;
-}
-#enemy3 {
-    left:300px;
-    top:30px;
-
-}
 .hidden{
     visibility: hidden;
 }
+
 .wall {
     height: 50vh;
     background-color: white;
