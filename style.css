@@ -18,6 +18,12 @@ body {
     border-width: 0px;
     margin-bottom:20px;
 }
+#stuckText {
+    color:white;
+    box-shadow: 0 0 4px beige;
+    width: 5vw;
+    font-size: 2em;
+}
 #startGame:hover {
     box-shadow:0 0 7px beige;
 
@@ -52,7 +58,7 @@ body {
         box-shadow: 0 0 7px beige;
     }
 }
-@keyframes win{
+@keyframes win {
     0% {
         transform: scale(1);
         box-shadow:0 0 0px beige;
@@ -61,9 +67,13 @@ body {
         transform: scale(1.5);
         box-shadow:0 0 7px beige;
     }
-    100% {
+    90% {
         transform: scale(2);
-        box-shadow: 0 0 10px bege;
+        box-shadow: 0 0 10px beige;
+    }
+    100% {
+        transform: scale(0);
+        box-shadow: 0 0 7px beige;
     }
 }
 
@@ -76,6 +86,11 @@ body {
 .playerMove {
     animation: pulsingclick;
     animation-duration: 0.1s;
+}
+
+.win {
+    animation-name: win;
+    animation-duration: 1s;
 }
 
 .actors {
@@ -113,6 +128,10 @@ body {
     left:500px;
 }
 
+#goal2 {
+    left:500px;
+    top:500px;
+}
 #enemy1 {
     left:150px;
     top:300px;
@@ -121,7 +140,26 @@ body {
     left:200px;
     top:375px;
 }
+#enemy3 {
+    left:300px;
+    top:30px;
 
+}
 .hidden{
     visibility: hidden;
+}
+.wall {
+    height: 50vh;
+    background-color: white;
+    width:1px;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+}
+#wall1 {
+    left:280px;
 }
