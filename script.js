@@ -1,5 +1,6 @@
 const startButton = document.querySelector('#startGame');
 const title = document.querySelector("#title");
+const credits = document.querySelector("#credits");
 startButton.addEventListener('click', e => {
     startButton.classList.add('pulsingClick');
     setTimeout(function(){startButton.classList.remove('pulsingClick')},2000);
@@ -21,6 +22,7 @@ startButton.addEventListener('click', e => {
     },2000);
     
     title.style.setProperty("visibility","hidden");
+    credits.style.setProperty("visibility","hidden");
     startButton.classList.add('hidden');
     //End game start animation
 
