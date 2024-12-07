@@ -83,34 +83,6 @@ body {
     }
 }
 
-@keyframes stuck {
-    0% {
-        color:white;
-    }
- 
-    50% {
-        color:red;
-    }
-
-    100% {
-        color:white;
-    }
-}
-
-@keyframes stuckExperiment {
-    0% {
-        background-color:black;
-    }
- 
-    50% {
-        background-color:red;
-    }
-
-    100% {
-        background-color:black;
-    }
-}
-
 .pulsingClick {
     animation-name: pulsingclick;
     animation-duration: 2s;
@@ -124,18 +96,6 @@ body {
 .win {
     animation-name: win;
     animation-duration: 1s;
-}
-
-.stuck {
-    animation-name: stuck;
-    animation-duration: 0.85s;
-    animation-iteration-count: infinite;
-}
-
-.stuckExperiment {
-    animation-name: stuckExperiment;
-    animation-duration: 0.85s;
-    animation-iteration-count: infinite;
 }
 
 .actors {

@@ -1,0 +1,73 @@
+Hello! and welcome to this very easy and relatively easy tutorial on mapmaking in "Possible Game" (Patent pending)
+
+In order to make or edit a map in "Possible Game" (Patent pending) you need basic HTML and CSS skills, and some common sense.
+
+===== START =====
+
+Open up index.html file. There, find a section creatively labeled 'THE MAP'
+You can edit this section in order to put together a map for "Possible Game" (Patent pending)
+
+===== OBJECTS =====
+
+You can use a multitude of different objects in order to create your map, such as:
+
+Goals - The main objectives of "Possible Game" (Patent pending).            CSS Class: 'goal'
+Enemies - The main antagonists of "Possible Game" (Patent pending).         CSS Class: 'enemy'
+Walls - Just walls. That's it.                                              CSS Class: 'wall'
+
+To add an object to your map, create a div tag. Then, to make a specific type of object, add the correct CSS Class to the div tag.
+
+If you're creating a wall, you also need to add either a 'vertical' or 'horizontal' class to the tag. Otherwise, the wall won't show up properly on the map.
+
+To finish creating an object, you need to add the 'actors' tag. This tag links the object to the logic of "Possible Game" (Patent pending).
+
+Aditionally, you can also customise the objects by adding text to the div tag.
+
+===== PLACEMENT =====
+
+To move your object around the map, add a proper id to its div tag.
+
+Next, locate and open the placement.css file.
+
+There, add your object's id and move it around by editing its 'left' and 'top' properties.
+
+You can also edit dimesions of your objects by editing the 'width' and 'height' properties.
+
+===== THE PLAYER =====
+
+If you want to move the player around, you can do so in the placement.css file, similarly to moving around other objects.
+
+===== WHAT NOT TO DO =====
+
+Do not mess around the script.js or style.css file (unless you know what you're doing). Doing so might result in complete destruction of your copy of "Possible Game" (Patent pending).
+
+Do not edit parts of index.html file other than 'THE MAP'.
+
+===== EXAMPLES =====
+
+Here are some examples of properly created objects.
+
+Enemy:
+
+<div class="enemy actors" id="enemy0">
+    grr
+</div>
+
+Goal:
+
+<div class="goal actors" id="goal0">
+    goal
+</div>
+
+Wall:
+
+<div class="vertical wall actors" id="wall0"></div>
+
+===== END =====
+
+That's it! Now you can go and create your own map for "Possible Game" (Patent pending).
+
+Thank you for reading this tutorial and playing "Possible Game" (Patent pending)!
+
+Game authors: Krzysztof Gawroński, Filip Radgowski
+Tutorial author: Filip Radgowski
