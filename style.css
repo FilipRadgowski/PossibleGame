@@ -1,6 +1,7 @@
 * {
     font-family: "Raleway", monospace;
     text-align: center;
+    cursor:crosshair;
 }
 
 body {
@@ -12,6 +13,30 @@ body {
     font-size: 4.5em;
     color: white;
     text-shadow: 0 0 4px beige;
+}
+#credits {
+    max-width: fit-content;
+    margin-inline: auto;
+    font-size: 1.15em;
+    color:white;
+    
+    
+}
+#madeBy {
+    text-align: left;
+}
+#filip {
+    text-align: left;
+    font-family: "Comic Sans MS";
+    font-weight:600;
+}
+#krzysztof {
+    text-align: left;
+    font-family: "Quicksand", sans-serif;
+    font-weight:600;
+}
+#grade {
+    text-align: right;
 }
 
 #startGame {
@@ -82,6 +107,17 @@ body {
         box-shadow: 0 0 7px beige;
     }
 }
+@keyframes fadeInStart {
+    0% {
+        opacity: 0%;
+    }
+    50% {
+        opacity:50%;
+    }
+    100% {
+        opacity:100%;
+    }
+}
 
 .pulsingClick {
     animation-name: pulsingclick;
@@ -97,6 +133,12 @@ body {
     animation-name: win;
     animation-duration: 1s;
 }
+.fadeInStart {
+    animation-name: fadeInStart;
+    animation-duration: 2s;
+}
+
+
 
 .actors {
     font-family: 'Comic Sans MS';
@@ -111,6 +153,8 @@ body {
     align-items: center;
 
     position: absolute;
+
+    opacity:0%;
 }
 
 #player {

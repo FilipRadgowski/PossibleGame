@@ -6,7 +6,7 @@
     <title>Possible Game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="placement.css">
 </head>
@@ -15,6 +15,13 @@
         <h1 id="title">Possible Game</h1>
 
         <button id="startGame">Start Game</button>
+
+        <div id="credits">
+            <p id="madeBy">Made by:</p>
+            <p id="filip">Filip Radgowski</p>
+            <p id="krzysztof">Krzysztof Gawroński</p>
+            <p id="grade">4ta</p>
+        </div>
     </div>
 
     <!-- \/ PLAYER - DO NOT REMOVE \/ -->
@@ -24,6 +31,19 @@
     </div>
 
     <!-- /\ PLAYER - DO NOT REMOVE /\ -->
+
+
+
+    <!-- \/ BORDERING WALLS - DO NOT DELETE \/ -->
+
+    <div class="horizontal wall actors" id="wallBottom"></div>
+    <div class="horizontal wall actors" id="wallTop"></div>
+    <div class="vertical wall actors" id="wallLeft"></div>
+    <div class="vertical wall actors" id="wallRight"></div>
+
+    <!-- /\ BORDERING WALLS - DO NOT DELETE /\ -->
+
+    
 
     <!-- \/ THE MAP - EDIT HERE \/ -->
 
@@ -47,11 +67,13 @@
         goal
     </div>
     
+    
+
     <div class="vertical wall actors" id="wall0"></div>
     <div class="vertical wall actors" id="wall1"></div>
     <div class="vertical wall actors" id="wall2"></div>
     <div class="horizontal wall actors" id="wall3"></div>
-
+    
     <!-- /\ THE MAP - EDIT HERE /\ -->
 
     <script src="script.js"></script>
