@@ -1,10 +1,12 @@
-#player{
+#player {
     left:10px;
+    top: 50vh;
 }
 
-#goal1 {
-    left:500px;
-    top:500px;
+
+
+#enemy0 {
+    left: 100px;
 }
 
 #enemy1 {
@@ -22,6 +24,31 @@
     top:30px;
 }
 
+
+
+#goal0{
+    left:500px;
+}
+
+#goal1 {
+    left:500px;
+    top:500px;
+}
+
+
+
 #wall0 {
     left:280px;
+}
+
+#wall1 {
+    left:400px;
+    height: 50vh;
+    top: 50vh;
+}
+
+#wall2 {
+    left:400px;
+    height:40vh;
+    top:0vh;
 }

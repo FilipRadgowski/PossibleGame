@@ -26,9 +26,6 @@ body {
     text-align: center;
     font-size: 2em;
     color:white;
-    
-    
-    
 }
 
 #startGame:hover {
@@ -48,7 +45,7 @@ body {
     }
 }
 
-@keyframes pulsingclick {
+@keyframes pulsingClick {
     0% {
         transform: scale(0.97);
         box-shadow:0 0 7px beige;
@@ -85,6 +82,7 @@ body {
         box-shadow: 0 0 7px beige;
     }
 }
+
 @keyframes stuck {
     0% {
         color:white;
@@ -98,6 +96,7 @@ body {
         color:white;
     }
 }
+
 @keyframes stuckExperiment {
     0% {
         background-color:black;
@@ -111,6 +110,7 @@ body {
         background-color:black;
     }
 }
+
 .pulsingClick {
     animation-name: pulsingclick;
     animation-duration: 2s;
@@ -131,6 +131,7 @@ body {
     animation-duration: 0.85s;
     animation-iteration-count: infinite;
 }
+
 .stuckExperiment {
     animation-name: stuckExperiment;
     animation-duration: 0.85s;
@@ -157,25 +158,14 @@ body {
     color: white;
 }
 
-
-
-
 .enemy {
     background-color: red;
     color: white;
-
-    left: 100px;
 }
 
 .goal {
     background-color: yellow;
     color: black;
-
-    left:500px;
-}
-
-.hidden{
-    visibility: hidden;
 }
 
 .wall {
@@ -183,23 +173,8 @@ body {
     background-color: white;
     width:1px;
     border-radius: 5px;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: absolute;
-}
-#wall0 {
-    left:280px;
-}
-#wall1 {
-    left:400px;
-    height: 50vh;
-    top: 50vh;
-}
-#wall2 {
-    left:400px;
-    height:40vh;
-    top:0vh;
+.hidden{
+    visibility: hidden;
 }
