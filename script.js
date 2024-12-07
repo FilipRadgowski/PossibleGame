@@ -91,7 +91,7 @@ function checkCollision(){
             if(actor.classList.contains('wall')){
                 directionalCollision(playerRect, actorRect);
             }else{
-                //resetPlayerPosition();
+                resetPlayerPosition();
             }
         }
     }

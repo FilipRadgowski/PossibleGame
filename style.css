@@ -168,10 +168,17 @@ body {
     color: black;
 }
 
-.wall {
+.vertical {
     height: 50vh;
     background-color: white;
     width:1px;
+    border-radius: 5px;
+}
+
+.horizontal {
+    height: 1px;
+    background-color: white;
+    width:50vh;
     border-radius: 5px;
 }
 
