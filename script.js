@@ -92,6 +92,14 @@ function checkCollision(){
                 directionalCollision(playerRect, actorRect);
             }else{
                 resetPlayerPosition();
+
+                if(actor.classList.contains('goal')){
+                    actor.classList.add("win");
+                    setTimeout(() => {
+                        actor.style.setProperty('visibility','hidden');
+                        actor.classList.remove('win');
+                    }, 1000);
+                }
             }
         }
     }
