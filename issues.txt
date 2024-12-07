@@ -1,0 +1,3 @@
+- still sends you back to start when touching an invisible goal that 
+had already been taken
+- you stick to bordering walls for some reason?

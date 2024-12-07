@@ -36,6 +36,41 @@
 }
 
 
+/* v BORDERING WALL PLACEMENT - DON'T CHANGE 
+THESE NEGATIVE TOP/LEFT/RIGHT VALUES IN BORDERING WALLS ARE FOR A REASON! - SO THAT THE PLAYER DOESN'T STICK TO WALLS + SO THEY DON'T EXTEND THE SITE */
+
+#wallBottom {
+    top:99vh;
+    width: 99.5vw;
+    height:0.01vh;
+    left:0vw;
+    visibility: hidden;
+}
+#wallTop {
+    top:-1vh; 
+    width:99.5vw;
+    height: 0.01vh;
+    
+    
+}
+#wallLeft {
+    top:0px;
+    left:-0.5vw;
+    height: 99.9vh;
+    width: 0.01vw;
+}
+#wallRight {
+    top:0px;
+    right:0.5vw;
+    height: 99vh;
+    width: 0.01vw;
+    visibility: hidden;
+    
+    
+}
+
+/* ^ BORDERING WALL PLACEMENT - DON'T CHANGE */
+
 
 #wall0 {
     left:280px;
@@ -43,7 +78,7 @@
 
 #wall1 {
     left:400px;
-    height: 50vh;
+    height: 48.5vh;
     top: 50vh;
 }
 

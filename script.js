@@ -1,4 +1,5 @@
 const startButton = document.querySelector('#startGame');
+const title = document.querySelector("#title");
 startButton.addEventListener('click', e => {
     startButton.classList.add('pulsingClick');
     setTimeout(function(){startButton.classList.remove('pulsingClick')},2000);
@@ -6,9 +7,30 @@ startButton.addEventListener('click', e => {
     //setInterval(checkCollision, 10);
     //setInterval(checkWin, 1);
     setInterval(playerMovement, 1);
-
+    
+    //Fade in animation for game start
+    const actors = document.querySelectorAll(".actors");
+    for (let i=0;i<actors.length;i++) {
+        actors[i].classList.add("fadeInStart");
+    }
+    setTimeout(function() {
+        for (let i=0;i<actors.length;i++) {
+            actors[i].classList.remove("fadeInStart");
+            actors[i].style.setProperty("opacity","100%");
+        }
+    },2000);
+    
+    title.style.setProperty("visibility","hidden");
     startButton.classList.add('hidden');
+    //End game start animation
+
 });
+
+
+
+
+
+
 
 const player = document.querySelector('#player');
 const enemies = document.querySelectorAll('.enemy');

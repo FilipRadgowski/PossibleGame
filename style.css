@@ -1,6 +1,7 @@
 * {
     font-family: "Raleway", monospace;
     text-align: center;
+    cursor:crosshair;
 }
 
 body {
@@ -82,6 +83,17 @@ body {
         box-shadow: 0 0 7px beige;
     }
 }
+@keyframes fadeInStart {
+    0% {
+        opacity: 0%;
+    }
+    50% {
+        opacity:50%;
+    }
+    100% {
+        opacity:100%;
+    }
+}
 
 .pulsingClick {
     animation-name: pulsingclick;
@@ -97,6 +109,12 @@ body {
     animation-name: win;
     animation-duration: 1s;
 }
+.fadeInStart {
+    animation-name: fadeInStart;
+    animation-duration: 2s;
+}
+
+
 
 .actors {
     font-family: 'Comic Sans MS';
@@ -111,6 +129,8 @@ body {
     align-items: center;
 
     position: absolute;
+
+    opacity:0%;
 }
 
 #player {
