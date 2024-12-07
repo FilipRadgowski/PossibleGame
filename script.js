@@ -1,26 +1,66 @@
-const startButton = document.querySelector("#startGame");
-startButton.addEventListener("click",function(e){
-    startButton.classList.add("pulsingClick");
-    setTimeout(function(){startButton.classList.remove("pulsingClick")},2000);
+const startButton = document.querySelector('#startGame');
+startButton.addEventListener('click', e => {
+    startButton.classList.add('pulsingClick');
+    setTimeout(function(){startButton.classList.remove('pulsingClick')},2000);
     setInterval(moveEnemy, 10);
-    setInterval(checkCollision, 10);
-    setInterval(checkWin, 1);
+    //setInterval(checkCollision, 10);
+    //setInterval(checkWin, 1);
     setInterval(playerMovement, 1);
 
-    startButton.classList.add("hidden");
+    startButton.classList.add('hidden');
 });
 
-const player = document.querySelector("#player");
-const enemies = document.querySelectorAll(".enemy");
-const goals = document.querySelectorAll(".goal");
-const walls = document.querySelectorAll(".wall");
-const stuckText = document.querySelector("#stuckText");
+const player = document.querySelector('#player');
+const enemies = document.querySelectorAll('.enemy');
+const stuckText = document.querySelector('#stuckText');
 
-//movementFlag
-//-1 - up
-//1 - down
-player.wallFlag = false;
+const actors = document.querySelectorAll('.actors:not(#player)');
+
+player.movementBrakes = {resetBrakes: function(){
+    player.movementBrakes.right = false;
+    player.movementBrakes.left = false;
+    player.movementBrakes.up = false;
+    player.movementBrakes.down = false;
+}};
+
+//Player movement keyboard trigger//
+// (what rhymes with trigger? (those who know 💀))
+
+let keys = {};
+document.addEventListener('keydown', e => {
+    keys[e.keyCode || e.which] = true;
+});
+document.addEventListener('keyup', e => {
+    keys[e.keyCode || e.which] = false;
+});
+
+/*key w - 87//
+//key s - 83//
+//key a - 65//
+//key d - 68*/
+function playerMovement(){
+
+    checkCollision();
+
+    if(keys[87] && !player.movementBrakes.up){
+        player.style.setProperty('top', `${player.offsetTop - 1}px`);
+    }
+    if(keys[83] && !player.movementBrakes.down){
+        player.style.setProperty('top', `${player.offsetTop + 1}px`);
+    }
+    if(keys[68] && !player.movementBrakes.right){
+        player.style.setProperty('left', `${player.offsetLeft + 1}px`);
+    }
+    if(keys[65] && !player.movementBrakes.left){
+        player.style.setProperty('left', `${player.offsetLeft - 1}px`);
+    }
+
+    player.movementBrakes.resetBrakes();
+}
+
 for (const enemy of enemies){
+    //-1 - up
+    //1 - down
     enemy.movement = -1;
     enemy.speed = 1;
 }
@@ -34,112 +74,45 @@ function moveEnemy(){
         if(enemy.offsetTop <= 0){
             enemy.movement = 1;
         }
-        if (enemy.offsetTop >= window.innerHeight - 50){
+        if(enemy.offsetTop >= window.innerHeight - 50){
             enemy.movement = -1;
         }
         enemy.style.setProperty('top', `${enemy.offsetTop + enemy.movement*enemy.speed}px`);
     }
 }
-let wallFlags = [];
-// the blocks getting freaky and smashing (into) eachother (consentually) 
 
-function checkCollision() {
-    for (const enemy of enemies){
-        encord = enemy.getBoundingClientRect();
-        plcord = player.getBoundingClientRect();
-        let overlap = !(encord.right < plcord.left || encord.left > plcord.right || encord.bottom < plcord.top || encord.top > plcord.bottom);
-        if(overlap){
-            player.style.setProperty("top", window.innerHeight/2 + "px");
-            player.style.setProperty("left", 10 +"px");
+function checkCollision(){
+    playerRect = player.getBoundingClientRect();
+
+    for(const actor of actors){
+        actorRect = actor.getBoundingClientRect();
+        console.log();
+        if(!(actorRect.right < playerRect.left || actorRect.left > playerRect.right || actorRect.bottom < playerRect.top || actorRect.top > playerRect.bottom)){
+            if(actor.classList.contains('wall')){
+                directionalCollision(playerRect, actorRect);
+            }else{
+                resetPlayerPosition();
+
+                if(actor.classList.contains('goal')){
+                    actor.classList.add("win");
+                    setTimeout(() => {
+                        actor.style.setProperty('visibility','hidden');
+                        actor.classList.remove('win');
+                    }, 1000);
+                }
+            }
         }
-    }   
-    for (let i=0;i<walls.length;i++){
-        wall = walls[i];
-        wlcord = wall.getBoundingClientRect();
-        plcord = player.getBoundingClientRect();
-        let overlap = !(wlcord.right < plcord.left || wlcord.left > plcord.right || wlcord.bottom < plcord.top || wlcord.top > plcord.bottom);
-        if(overlap){
-            player.wallFlag = true;
-            stuckText.innerHTML = "Stuck!";
-        }else{
-            player.wallFlag = false;
-            stuckText.innerHTML = "Ur safe";
-        }
-        
-        if (overlap){
-            wallFlags[i] = true;
-        }
-        else{
-            wallFlags[i] = false;
-        }
-    }
-    if (wallFlags.includes(true)) {
-        stuckText.innerHTML = "Stuck!";
-        stuckText.classList.add("stuck");
-        player.classList.add("stuckExperiment");
-    }
-    else {
-        stuckText.innerHTML = "Safe";
-        stuckText.classList.remove("stuck");
-        player.classList.remove("stuckExperiment");
     }
 }
 
-//let goalsAchieved = 0;
-//console.log(goals.length);
-function checkWin(){
-    for (const goal of goals){
-        glcord = goal.getBoundingClientRect();
-        plcord = player.getBoundingClientRect();
-        
-        let overlap = !(glcord.right < plcord.left || glcord.left > plcord.right || glcord.bottom < plcord.top || glcord.top > plcord.bottom);
-        if (overlap){
-            //goalsAchieved++;
-            //if (goalsAchieved == goals.length) {
-            player.style.setProperty("top", window.innerHeight/2 + "px");
-            player.style.setProperty("left", 10 +"px");
-            //}
-            goal.classList.add("win");
-            setTimeout(() => {
-                goal.style.setProperty("visibility","hidden");
-                goal.classList.remove("win");
-            }, 1000);
-        }
-        
-    }
-    
+function directionalCollision(playerRect, actorRect){
+    player.movementBrakes.right = (playerRect.right > actorRect.left && playerRect.left < actorRect.left);
+    player.movementBrakes.left = (playerRect.left < actorRect.right && playerRect.right > actorRect.right);
+    player.movementBrakes.up = (playerRect.top < actorRect.bottom && playerRect.bottom > actorRect.bottom);
+    player.movementBrakes.down = (playerRect.bottom > actorRect.top && playerRect.top < actorRect.top);
 }
-//Player movement keyboard trigger//
-// (what rhymes with trigger? (those who know 💀))
 
-let keys = {};
-document.addEventListener('keydown', e => {
-    keys[e.keyCode || e.which] = true;
-});
-document.addEventListener("keyup", e => {
-    keys[e.keyCode || e.which] = false;
-});
-
-//key w - 87
-//key s - 83
-//key a - 65
-//key d - 68
-function playerMovement(){
-    if(keys[87] && !keys[83]){
-        player.style.setProperty("top",player.offsetTop - 1 +"px");
-        
-    }
-    if(keys[83] && !keys[87]){
-        player.style.setProperty("top",player.offsetTop + 1 +"px");
-        
-    }
-    if (keys[68] && !keys[65] && !(wallFlags.includes(true))){
-        player.style.setProperty("left",player.offsetLeft + 1 +"px");
-        
-
-    }
-    if (keys[65] && !keys[68] && !(wallFlags.includes(true))){
-        player.style.setProperty("left",player.offsetLeft - 1 +"px");
-        
-    }
+function resetPlayerPosition(){
+    player.style.setProperty('top', `${window.innerHeight/2}px`);
+    player.style.setProperty('left', '10px');
 }
