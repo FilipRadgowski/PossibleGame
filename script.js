@@ -1,4 +1,8 @@
 const startButton = document.querySelector('#startGame');
+const actors = document.querySelectorAll('.actors:not(#player)');
+const player = document.querySelector('#player');
+const enemies = document.querySelectorAll('.enemy');
+
 startButton.addEventListener('click', e => {
     startButton.classList.add('pulsingClick');
     setTimeout(() => {startButton.classList.remove('pulsingClick')},2000);
@@ -24,12 +28,6 @@ startButton.addEventListener('click', e => {
     startButton.classList.add('hidden');
     //End game start animation
 });
-
-const player = document.querySelector('#player');
-const enemies = document.querySelectorAll('.enemy');
-const stuckText = document.querySelector('#stuckText');
-
-const actors = document.querySelectorAll('.actors:not(#player)');
 
 player.movementBrakes = {resetBrakes: function(){
     player.movementBrakes.right = false;
