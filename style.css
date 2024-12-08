@@ -14,29 +14,20 @@ body {
     color: white;
     text-shadow: 0 0 4px beige;
 }
-#credits {
+
+#credits{
     max-width: fit-content;
     margin-inline: auto;
     font-size: 1.15em;
     color:white;
-    
-    
-}
-#madeBy {
-    text-align: left;
 }
 #filip {
-    text-align: left;
     font-family: "Comic Sans MS";
     font-weight:600;
 }
 #krzysztof {
-    text-align: left;
     font-family: "Quicksand", sans-serif;
     font-weight:600;
-}
-#grade {
-    text-align: right;
 }
 
 #startGame {
@@ -47,15 +38,8 @@ body {
     margin-bottom:20px;
 }
 
-#stuckText {
-    text-align: center;
-    font-size: 2em;
-    color:white;
-}
-
 #startGame:hover {
     box-shadow:0 0 7px beige;
-
 }
 
 @keyframes buttonHover {
@@ -89,6 +73,18 @@ body {
     }
 }
 
+@keyframes fadeInStart {
+    0% {
+        opacity: 0%;
+    }
+    50% {
+        opacity:50%;
+    }
+    100% {
+        opacity:100%;
+    }
+}
+
 @keyframes win {
     0% {
         transform: scale(1);
@@ -107,38 +103,22 @@ body {
         box-shadow: 0 0 7px beige;
     }
 }
-@keyframes fadeInStart {
-    0% {
-        opacity: 0%;
-    }
-    50% {
-        opacity:50%;
-    }
-    100% {
-        opacity:100%;
-    }
-}
 
 .pulsingClick {
-    animation-name: pulsingclick;
-    animation-duration: 2s;
+    animation: pulsingclick 2s;
 }
 
 .playerMove {
-    animation: pulsingclick;
-    animation-duration: 0.1s;
+    animation: pulsingclick 0.1s;
 }
 
 .win {
-    animation-name: win;
-    animation-duration: 1s;
+    animation: win 1s;
 }
+
 .fadeInStart {
-    animation-name: fadeInStart;
-    animation-duration: 2s;
+    animation: fadeInStart 2s;
 }
-
-
 
 .actors {
     font-family: 'Comic Sans MS';
