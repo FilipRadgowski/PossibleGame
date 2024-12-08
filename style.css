@@ -14,6 +14,7 @@ body {
     color: white;
     text-shadow: 0 0 4px beige;
 }
+
 #credits{
     max-width: fit-content;
     margin-inline: auto;
@@ -37,15 +38,8 @@ body {
     margin-bottom:20px;
 }
 
-#stuckText {
-    text-align: center;
-    font-size: 2em;
-    color:white;
-}
-
 #startGame:hover {
     box-shadow:0 0 7px beige;
-
 }
 
 @keyframes buttonHover {
@@ -127,8 +121,6 @@ body {
     animation-name: fadeInStart;
     animation-duration: 2s;
 }
-
-
 
 .actors {
     font-family: 'Comic Sans MS';
