@@ -3,7 +3,7 @@ const title = document.querySelector("#title");
 const credits = document.querySelector("#credits");
 startButton.addEventListener('click', e => {
     startButton.classList.add('pulsingClick');
-    setTimeout(function(){startButton.classList.remove('pulsingClick')},2000);
+    setTimeout(() => {startButton.classList.remove('pulsingClick')},2000);
     setInterval(moveEnemy, 10);
     //setInterval(checkCollision, 10);
     //setInterval(checkWin, 1);
@@ -14,7 +14,7 @@ startButton.addEventListener('click', e => {
     for (let i=0;i<actors.length;i++) {
         actors[i].classList.add("fadeInStart");
     }
-    setTimeout(function() {
+    setTimeout(() => {
         for (let i=0;i<actors.length;i++) {
             actors[i].classList.remove("fadeInStart");
             actors[i].style.setProperty("opacity","100%");
@@ -27,12 +27,6 @@ startButton.addEventListener('click', e => {
     //End game start animation
 
 });
-
-
-
-
-
-
 
 const player = document.querySelector('#player');
 const enemies = document.querySelectorAll('.enemy');
@@ -111,14 +105,13 @@ function checkCollision(){
     for(const actor of actors){
         actorRect = actor.getBoundingClientRect();
         console.log();
-        if(simpleCollision()){
+        if(simpleCollision(playerRect, actorRect)){
             if(actor.classList.contains('wall')){
                 directionalCollision(playerRect, actorRect);
             }else{
-
                 if(actor.classList.contains('goal')){
                     if(!actor.classList.contains('win')){
-                        actor.classList.add("win");
+                        actor.classList.add('win');
                         setTimeout(() => {
                             actor.style.setProperty('visibility','hidden');
                         }, 1000);
@@ -133,15 +126,15 @@ function checkCollision(){
     }
 }
 
-function simpleCollision(){
+function simpleCollision(playerRect, actorRect){
     return !(actorRect.right < playerRect.left || actorRect.left > playerRect.right || actorRect.bottom < playerRect.top || actorRect.top > playerRect.bottom);
 }
 
 function directionalCollision(playerRect, actorRect){
-    player.movementBrakes.right = (playerRect.right > actorRect.left && playerRect.left < actorRect.left);
-    player.movementBrakes.left = (playerRect.left < actorRect.right && playerRect.right > actorRect.right);
-    player.movementBrakes.up = (playerRect.top < actorRect.bottom && playerRect.bottom > actorRect.bottom);
-    player.movementBrakes.down = (playerRect.bottom > actorRect.top && playerRect.top < actorRect.top);
+    player.movementBrakes.right += (playerRect.right > actorRect.left && playerRect.left < actorRect.left);
+    player.movementBrakes.left += (playerRect.left < actorRect.right && playerRect.right > actorRect.right);
+    player.movementBrakes.up += (playerRect.top < actorRect.bottom && playerRect.bottom > actorRect.bottom);
+    player.movementBrakes.down += (playerRect.bottom > actorRect.top && playerRect.top < actorRect.top);
 }
 
 function resetPlayerPosition(){
