@@ -111,22 +111,30 @@ function checkCollision(){
     for(const actor of actors){
         actorRect = actor.getBoundingClientRect();
         console.log();
-        if(!(actorRect.right < playerRect.left || actorRect.left > playerRect.right || actorRect.bottom < playerRect.top || actorRect.top > playerRect.bottom)){
+        if(simpleCollision()){
             if(actor.classList.contains('wall')){
                 directionalCollision(playerRect, actorRect);
             }else{
-                resetPlayerPosition();
 
                 if(actor.classList.contains('goal')){
-                    actor.classList.add("win");
-                    setTimeout(() => {
-                        actor.style.setProperty('visibility','hidden');
-                        actor.classList.remove('win');
-                    }, 1000);
+                    if(!actor.classList.contains('win')){
+                        actor.classList.add("win");
+                        setTimeout(() => {
+                            actor.style.setProperty('visibility','hidden');
+                        }, 1000);
+                        resetPlayerPosition();
+                    }
+                    continue;
                 }
+
+                resetPlayerPosition();
             }
         }
     }
+}
+
+function simpleCollision(){
+    return !(actorRect.right < playerRect.left || actorRect.left > playerRect.right || actorRect.bottom < playerRect.top || actorRect.top > playerRect.bottom);
 }
 
 function directionalCollision(playerRect, actorRect){
