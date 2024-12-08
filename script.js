@@ -4,18 +4,19 @@ startButton.addEventListener('click', e => {
     setTimeout(() => {startButton.classList.remove('pulsingClick')},2000);
     setInterval(moveEnemy, 10);
     setInterval(playerMovement, 1);
-    
-    const actors = document.querySelectorAll('.actors');
 
     //Fade in animation for game start
-    for (let i=0;i<actors.length;i++) {
-        actors[i].classList.add('fadeInStart');
+    for (const actor of actors) {
+        actor.classList.add('fadeInStart');
     }
+    player.classList.add('fadeInStart');
     setTimeout(() => {
-        for (let i=0;i<actors.length;i++) {
-            actors[i].classList.remove('fadeInStart');
-            actors[i].style.setProperty('opacity','100%');
-        }
+        for (const actor of actors) {
+            actor.classList.remove('fadeInStart');
+            actor.style.setProperty('opacity','100%');
+        } 
+        player.classList.remove('fadeInStart');
+        player.style.setProperty('opacity','100%');
     },2000);
     
     document.querySelector('#title').style.setProperty('visibility','hidden');
