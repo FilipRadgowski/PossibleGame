@@ -17,11 +17,16 @@ Walls - Just walls. That's it.                                              CSS 
 
 To add an object to your map, create a div tag. Then, to make a specific type of object, add the correct CSS Class to the div tag.
 
-If you're creating a wall, you also need to add either a 'vertical' or 'horizontal' class to the tag. Otherwise, the wall won't show up properly on the map.
+While creating a wall, you also need to add either a 'vertical' or 'horizontal' class to the tag. Otherwise, the wall won't show up properly on the map.
 
 To finish creating an object, you need to add the 'actors' tag. This tag links the object to the logic of "Possible Game" (Patent pending).
 
 Aditionally, you can also customise the objects by adding text to the div tag.
+
+===== MODIFIERS =====
+
+Default movement of an enemy is vertical - meaning up and down.
+If you wish to change it to horizontal movement all you have to do is add a 'horizontalMovement' CSS class to the div tag.
 
 ===== PLACEMENT =====
 

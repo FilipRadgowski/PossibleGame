@@ -80,16 +80,27 @@ for (const enemy of enemies){
 enemies[1].speed = 2;
 enemies[2].speed = 3;
 enemies[3].speed = 5;
+enemies[4].speed = 4;
 
 function moveEnemy(){
     for (const enemy of enemies){
-        if(enemy.offsetTop <= 0){
-            enemy.movement = 1;
+        if(enemy.classList.contains('horizontalMovement')){
+            if(enemy.offsetLeft <= 0){
+                enemy.movement = 1;
+            }
+            if(enemy.offsetLeft >= window.innerWidth - 50){
+                enemy.movement = -1;
+            }
+            enemy.style.setProperty('left', `${enemy.offsetLeft + enemy.movement*enemy.speed}px`);
+        }else{
+            if(enemy.offsetTop <= 0){
+                enemy.movement = 1;
+            }
+            if(enemy.offsetTop >= window.innerHeight - 50){
+                enemy.movement = -1;
+            }
+            enemy.style.setProperty('top', `${enemy.offsetTop + enemy.movement*enemy.speed}px`);
         }
-        if(enemy.offsetTop >= window.innerHeight - 50){
-            enemy.movement = -1;
-        }
-        enemy.style.setProperty('top', `${enemy.offsetTop + enemy.movement*enemy.speed}px`);
     }
 }
 
@@ -98,7 +109,6 @@ function checkCollision(){
 
     for(const actor of actors){
         actorRect = actor.getBoundingClientRect();
-        console.log();
         if(simpleCollision(playerRect, actorRect)){
             if(actor.classList.contains('wall')){
                 directionalCollision(playerRect, actorRect);
