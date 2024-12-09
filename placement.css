@@ -20,7 +20,7 @@
 }
 
 #enemy3 {
-    left:38vw;
+    left:39vw;
     top:50%;
 }
 
@@ -71,13 +71,14 @@
 
 #wall3 {
     top:30vh;
-    width:35vw;
+    left:0vh;
+    width:36vw;
 }
 
 #wall4 {
     top:60vh;
-    left:45vh;
-    width:38vw;
+    left:50vw;
+    width:35vw;
 }
 
 

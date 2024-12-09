@@ -42,6 +42,14 @@ body {
     box-shadow:0 0 7px beige;
 }
 
+#scoreDiv{
+    color: #bebebe;
+    text-shadow: 0 0 4px #d3d3d3;
+    scale: 500%;
+
+    opacity:0%;
+}
+
 @keyframes buttonHover {
     0% {
         transform: scale(0.97);
@@ -73,7 +81,7 @@ body {
     }
 }
 
-@keyframes fadeInStart {
+@keyframes lowTaperFade {
     0% {
         opacity: 0%;
     }
@@ -114,10 +122,6 @@ body {
 
 .win {
     animation: win 1s;
-}
-
-.fadeInStart {
-    animation: fadeInStart 2s;
 }
 
 .actors {
