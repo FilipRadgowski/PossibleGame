@@ -92,15 +92,15 @@ function moveEnemy(){
                 enemy.movement = -1;
             }
             enemy.style.setProperty('left', `${enemy.offsetLeft + enemy.movement*enemy.speed}px`);
-        }else{
-            if(enemy.offsetTop <= 0){
-                enemy.movement = 1;
-            }
-            if(enemy.offsetTop >= window.innerHeight - 50){
-                enemy.movement = -1;
-            }
-            enemy.style.setProperty('top', `${enemy.offsetTop + enemy.movement*enemy.speed}px`);
+            continue;
         }
+        if(enemy.offsetTop <= 0){
+            enemy.movement = 1;
+        }
+        if(enemy.offsetTop >= window.innerHeight - 50){
+            enemy.movement = -1;
+        }
+        enemy.style.setProperty('top', `${enemy.offsetTop + enemy.movement*enemy.speed}px`);
     }
 }
 
