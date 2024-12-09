@@ -41,10 +41,10 @@ player.movementBrakes = {resetBrakes: function(){
 
 let keys = {};
 document.addEventListener('keydown', e => {
-    keys[e.keyCode || e.which] = true;
+    keys[e.key.toLowerCase()] = true;
 });
 document.addEventListener('keyup', e => {
-    keys[e.keyCode || e.which] = false;
+    keys[e.key.toLowerCase()] = false;
 });
 
 /*key w - 87//
@@ -54,16 +54,16 @@ document.addEventListener('keyup', e => {
 function playerMovement(){
     checkCollision();
 
-    if(keys[87] && !player.movementBrakes.up){
+    if(keys.w && !player.movementBrakes.up){
         player.style.setProperty('top', `${player.offsetTop - 1}px`);
     }
-    if(keys[83] && !player.movementBrakes.down){
+    if(keys.s && !player.movementBrakes.down){
         player.style.setProperty('top', `${player.offsetTop + 1}px`);
     }
-    if(keys[68] && !player.movementBrakes.right){
+    if(keys.d && !player.movementBrakes.right){
         player.style.setProperty('left', `${player.offsetLeft + 1}px`);
     }
-    if(keys[65] && !player.movementBrakes.left){
+    if(keys.a && !player.movementBrakes.left){
         player.style.setProperty('left', `${player.offsetLeft - 1}px`);
     }
 
@@ -109,23 +109,22 @@ function checkCollision(){
 
     for(const actor of actors){
         actorRect = actor.getBoundingClientRect();
-        if(simpleCollision(playerRect, actorRect)){
-            if(actor.classList.contains('wall')){
-                directionalCollision(playerRect, actorRect);
-            }else{
-                if(actor.classList.contains('goal')){
-                    if(!actor.classList.contains('win')){
-                        actor.classList.add('win');
-                        setTimeout(() => {
-                            actor.style.setProperty('visibility','hidden');
-                        }, 1000);
-                        resetPlayerPosition();
-                    }
-                    continue;
-                }
+        if(!simpleCollision(playerRect, actorRect))continue;
+        if(actor.classList.contains('wall')){
+            directionalCollision(playerRect, actorRect);
+            continue;
+        }
+        if(actor.classList.contains('goal')){
+            if(!actor.classList.contains('win')){
+                actor.classList.add('win');
+                setTimeout(() => {
+                    actor.style.setProperty('visibility','hidden');
+                }, 1000);
                 resetPlayerPosition();
             }
+            continue;
         }
+        resetPlayerPosition();
     }
 }
 
