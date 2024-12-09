@@ -3,6 +3,8 @@ const actors = document.querySelectorAll('.actors:not(#player)');
 const player = document.querySelector('#player');
 const enemies = document.querySelectorAll('.enemy');
 
+const main = document.querySelector('#main');
+
 const scoreDiv = document.querySelector('#scoreDiv');
 const scoreDisplay = document.querySelector('#scoreDisplay');
 const goals = document.querySelectorAll('.goal');
@@ -14,28 +16,27 @@ updateScore();
 startButton.addEventListener('click', e => {
     startButton.classList.add('pulsingClick');
     setTimeout(() => {startButton.classList.remove('pulsingClick')},2000);
-    setInterval(moveEnemy, 10);
-    setInterval(playerMovement, 1);
+    enemyMovementInterval = setInterval(moveEnemy, 10);
+    playerMovementInterval = setInterval(playerMovement, 1);
 
     //Fade in animation for game start
     for (const actor of actors) {
-        actor.classList.add('fadeInStart');
+        actor.style.animation = 'lowTaperFade 2s';
     }
-    player.classList.add('fadeInStart');
-    scoreDiv.classList.add('fadeInStart');
+    player.style.animation = 'lowTaperFade 2s';
+    scoreDiv.style.animation = 'lowTaperFade 2s';
     setTimeout(() => {
         for (const actor of actors) {
-            actor.classList.remove('fadeInStart');
+            actor.style.animation = '';
             actor.style.setProperty('opacity','100%');
-        } 
-        player.classList.remove('fadeInStart');
+        }
+        player.style.animation = '';
+        scoreDiv.style.animation = '';
         player.style.setProperty('opacity','100%');
-        scoreDiv.classList.remove('fadeInStart');
         scoreDiv.style.setProperty('opacity','100%');
     },2000);
     
-    document.querySelector('#title').style.setProperty('visibility','hidden');
-    document.querySelector('#credits').style.setProperty('visibility','hidden');
+    main.style.setProperty('opacity','0%');
     startButton.classList.add('hidden');
     //End game start animation
 });
@@ -58,10 +59,6 @@ document.addEventListener('keyup', e => {
     keys[e.key.toLowerCase()] = false;
 });
 
-/*key w - 87//
-//key s - 83//
-//key a - 65//
-//key d - 68*/
 function playerMovement(){
     checkCollision();
 
@@ -132,6 +129,7 @@ function checkCollision(){
             if(!actor.classList.contains('win')){
                 score++;
                 updateScore();
+                endGame();
                 actor.classList.add('win');
                 setTimeout(() => {
                     actor.style.setProperty('visibility','hidden');
@@ -161,4 +159,31 @@ function resetPlayerPosition(){
 
 function updateScore(){
     scoreDisplay.innerHTML = `${score}/${goals.length}`;
+}
+
+function endGame(){
+    if(score == goals.length){
+        //stop the game
+        clearInterval(playerMovementInterval);
+        clearInterval(enemyMovementInterval);
+        
+        //fadeout animation
+        for (const actor of actors) {
+            if(actor.classList.contains('goal')) continue;
+            actor.style.animation = 'lowTaperFade 2s reverse';
+        }
+        player.style.animation = 'lowTaperFade 2s reverse';
+        scoreDiv.style.animation = 'lowTaperFade 2s reverse';
+        setTimeout(() => {
+            for (const actor of actors) {
+                actor.style.setProperty('opacity','0%');
+            } 
+            player.style.setProperty('opacity','0%');
+            scoreDiv.style.setProperty('opacity','0%');
+        },2000);
+
+        //show end screen
+        main.style.animation = 'lowTaperFade 2s';
+        main.style.setProperty('opacity', '100%');
+    }
 }

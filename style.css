@@ -81,7 +81,7 @@ body {
     }
 }
 
-@keyframes fadeInStart {
+@keyframes lowTaperFade {
     0% {
         opacity: 0%;
     }
@@ -122,10 +122,6 @@ body {
 
 .win {
     animation: win 1s;
-}
-
-.fadeInStart {
-    animation: fadeInStart 2s;
 }
 
 .actors {
