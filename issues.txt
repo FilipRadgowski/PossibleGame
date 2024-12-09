@@ -1,3 +1,1 @@
-- still sends you back to start when touching an invisible goal that 
-had already been taken
-- 2 adjacent walls make you clip when touching them both at once
+-the screen scrolls for some reason
