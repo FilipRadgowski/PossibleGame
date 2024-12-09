@@ -6,77 +6,78 @@
 
 
 #enemy0 {
-    left: 11vh;
+    left: 12vw;
 }
 
 #enemy1 {
-    left:16vh;
+    left:18vw;
     top:30vh;
 }
 
 #enemy2 {
-    left:22vh;
+    left:25vw;
     top:37vh;
 }
 
 #enemy3 {
-    left:35vh;
+    left:38vw;
     top:50%;
 }
 
 #enemy4 {
-    left:25vh;
+    left:30vw;
     top:44vh;
 }
 #enemy5 {
-    left:82vh;
+    left:92vw;
 }
 #enemy6 {
-    left:40vh;
+    left:45vw;
     top:50%;
 }
 
 
 #goal0{
-    left:65vh;
+    left:60vw;
+    top:25vh;
 }
 
 #goal1 {
-    left:65vh;
+    left:60vw;
     top:70vh;
 }
 #goal2 {
-    left:5vh;
+    left:5vw;
     top:5vh;
 }
 
 
 #wall0 {
-    left:32vh;
+    left:36vw;
     top: 30vh;
 }
 
 #wall1 {
-    left:45vh;
+    left:50vw;
     height: 48.5vh;
     top: 50vh;
 }
 
 #wall2 {
-    left:45vh;
+    left:50vw;
     height:40vh;
     top:0vh;
 }
 
 #wall3 {
     top:30vh;
-    width:31vh;
+    width:35vw;
 }
 
 #wall4 {
     top:60vh;
     left:45vh;
-    width:35vh;
+    width:38vw;
 }
 
 
