@@ -20,25 +20,36 @@
 }
 
 #enemy3 {
-    left:300px;
-    top:30px;
+    left:40vh;
+    top:50%;
 }
 
 #enemy4 {
     left:250px;
     top:550px;
 }
-
+#enemy5 {
+    left:85vh;
+}
+#enemy6 {
+    left:45vh;
+    top:50%;
+}
 
 
 #goal0{
-    left:500px;
+    left:65vh;
 }
 
 #goal1 {
-    left:500px;
-    top:500px;
+    left:65vh;
+    top:70vh;
 }
+#goal2 {
+    left:5vh;
+    top:5vh;
+}
+
 
 #wall0 {
     left:280px;
@@ -58,7 +69,13 @@
 
 #wall3 {
     top:30vh;
-    width:300px;
+    width:280px;
+}
+
+#wall4 {
+    top:60vh;
+    left:52vh;
+    width:30vh;
 }
 
 

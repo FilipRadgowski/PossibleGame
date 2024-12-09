@@ -81,6 +81,9 @@ enemies[1].speed = 2;
 enemies[2].speed = 3;
 enemies[3].speed = 5;
 enemies[4].speed = 4;
+enemies[5].speed = 7;
+enemies[6].speed = 5;
+enemies[6].movement = 1;
 
 function moveEnemy(){
     for (const enemy of enemies){
@@ -120,7 +123,6 @@ function checkCollision(){
                 setTimeout(() => {
                     actor.style.setProperty('visibility','hidden');
                 }, 1000);
-                resetPlayerPosition();
             }
             continue;
         }
