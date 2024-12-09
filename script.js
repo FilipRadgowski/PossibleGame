@@ -3,6 +3,14 @@ const actors = document.querySelectorAll('.actors:not(#player)');
 const player = document.querySelector('#player');
 const enemies = document.querySelectorAll('.enemy');
 
+const scoreDiv = document.querySelector('#scoreDiv');
+const scoreDisplay = document.querySelector('#scoreDisplay');
+const goals = document.querySelectorAll('.goal');
+
+let score = 0;
+
+updateScore();
+
 startButton.addEventListener('click', e => {
     startButton.classList.add('pulsingClick');
     setTimeout(() => {startButton.classList.remove('pulsingClick')},2000);
@@ -14,6 +22,7 @@ startButton.addEventListener('click', e => {
         actor.classList.add('fadeInStart');
     }
     player.classList.add('fadeInStart');
+    scoreDiv.classList.add('fadeInStart');
     setTimeout(() => {
         for (const actor of actors) {
             actor.classList.remove('fadeInStart');
@@ -21,6 +30,8 @@ startButton.addEventListener('click', e => {
         } 
         player.classList.remove('fadeInStart');
         player.style.setProperty('opacity','100%');
+        scoreDiv.classList.remove('fadeInStart');
+        scoreDiv.style.setProperty('opacity','100%');
     },2000);
     
     document.querySelector('#title').style.setProperty('visibility','hidden');
@@ -119,6 +130,8 @@ function checkCollision(){
         }
         if(actor.classList.contains('goal')){
             if(!actor.classList.contains('win')){
+                score++;
+                updateScore();
                 actor.classList.add('win');
                 setTimeout(() => {
                     actor.style.setProperty('visibility','hidden');
@@ -144,4 +157,8 @@ function directionalCollision(playerRect, actorRect){
 function resetPlayerPosition(){
     player.style.setProperty('top', `${window.innerHeight/2}px`);
     player.style.setProperty('left', '10px');
+}
+
+function updateScore(){
+    scoreDisplay.innerHTML = `${score}/${goals.length}`;
 }
