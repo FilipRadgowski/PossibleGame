@@ -1,38 +1,38 @@
 #player {
-    left:10px;
-    top: 50vh;
+    left:1vh;
+    top: 90vh;
 }
 
 
 
 #enemy0 {
-    left: 100px;
+    left: 11vh;
 }
 
 #enemy1 {
-    left:150px;
-    top:300px;
+    left:16vh;
+    top:30vh;
 }
 
 #enemy2 {
-    left:200px;
-    top:375px;
+    left:22vh;
+    top:37vh;
 }
 
 #enemy3 {
-    left:40vh;
+    left:35vh;
     top:50%;
 }
 
 #enemy4 {
-    left:250px;
-    top:550px;
+    left:25vh;
+    top:44vh;
 }
 #enemy5 {
-    left:85vh;
+    left:82vh;
 }
 #enemy6 {
-    left:45vh;
+    left:40vh;
     top:50%;
 }
 
@@ -52,17 +52,18 @@
 
 
 #wall0 {
-    left:280px;
+    left:32vh;
+    top: 30vh;
 }
 
 #wall1 {
-    left:400px;
+    left:45vh;
     height: 48.5vh;
     top: 50vh;
 }
 
 #wall2 {
-    left:400px;
+    left:45vh;
     height:40vh;
     top:0vh;
 }
@@ -74,8 +75,8 @@
 
 #wall4 {
     top:60vh;
-    left:52vh;
-    width:30vh;
+    left:45vh;
+    width:35vh;
 }
 
 
