@@ -5,9 +5,11 @@ const enemies = document.querySelectorAll('.enemy');
 
 const main = document.querySelector('#main');
 
-const scoreDiv = document.querySelector('#scoreDiv');
+const statsDiv = document.querySelector('#statsDiv');
 const scoreDisplay = document.querySelector('#scoreDisplay');
 const goals = document.querySelectorAll('.goal');
+const timeText = document.querySelector("#timeDisplay");
+const yourTimeText = document.querySelector("#completionTime");
 
 let score = 0;
 
@@ -24,22 +26,32 @@ startButton.addEventListener('click', e => {
         actor.style.animation = 'lowTaperFade 2s';
     }
     player.style.animation = 'lowTaperFade 2s';
-    scoreDiv.style.animation = 'lowTaperFade 2s';
+    statsDiv.style.animation = 'lowTaperFade 2s';
     setTimeout(() => {
         for (const actor of actors) {
             actor.style.animation = '';
             actor.style.setProperty('opacity','100%');
         }
         player.style.animation = '';
-        scoreDiv.style.animation = '';
+        statsDiv.style.animation = '';
         player.style.setProperty('opacity','100%');
-        scoreDiv.style.setProperty('opacity','100%');
+        statsDiv.style.setProperty('opacity','100%');
     },2000);
     
     main.style.setProperty('opacity','0%');
     startButton.classList.add('hidden');
     //End game start animation
+
+    //Timer
+    let msStart = Date.now();
+    timeInterval = setInterval(() => {
+        let secondsPassed = (Date.now() - msStart)/1000;
+        timeText.innerHTML = Math.floor(secondsPassed/3600) + "h:" + Math.floor(secondsPassed/60)%60 + "m:" + Math.floor(secondsPassed%60)+"s";
+    },10);
+    
+
 });
+
 
 player.movementBrakes = {resetBrakes: function(){
     player.movementBrakes.right = false;
@@ -166,20 +178,21 @@ function endGame(){
         //stop the game
         clearInterval(playerMovementInterval);
         clearInterval(enemyMovementInterval);
-        
+        clearInterval(timeInterval);
+        yourTimeText.innerHTML = "Your time: "+ timeText.innerHTML;
         //fadeout animation
         for (const actor of actors) {
             if(actor.classList.contains('goal')) continue;
             actor.style.animation = 'lowTaperFade 2s reverse';
         }
         player.style.animation = 'lowTaperFade 2s reverse';
-        scoreDiv.style.animation = 'lowTaperFade 2s reverse';
+        statsDiv.style.animation = 'lowTaperFade 2s reverse';
         setTimeout(() => {
             for (const actor of actors) {
                 actor.style.setProperty('opacity','0%');
             } 
             player.style.setProperty('opacity','0%');
-            scoreDiv.style.setProperty('opacity','0%');
+            statsDiv.style.setProperty('opacity','0%');
         },2000);
 
         //show end screen

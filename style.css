@@ -42,12 +42,17 @@ body {
     box-shadow:0 0 7px beige;
 }
 
-#scoreDiv{
+#statsDiv{
     color: #bebebe;
     text-shadow: 0 0 4px #d3d3d3;
     scale: 500%;
 
     opacity:0%;
+}
+#completionTime {
+    color:white;
+    text-shadow: 0 0 4px white;
+    font-size: 1.25em;
 }
 
 @keyframes buttonHover {
