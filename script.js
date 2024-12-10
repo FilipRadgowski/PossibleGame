@@ -34,17 +34,6 @@ player.movementBrakes = {resetBrakes: function(){
     player.movementBrakes.down = false;
 }};
 
-//Player movement keyboard trigger//
-//(what rhymes with trigger? (those who know 💀))
-
-let keys = {};
-document.addEventListener('keydown', e => {
-    keys[e.key.toLowerCase()] = true;
-});
-document.addEventListener('keyup', e => {
-    keys[e.key.toLowerCase()] = false;
-});
-
 function startGame() {
     startButton.classList.add('pulsingClick');
     setTimeout(() => {startButton.classList.remove('pulsingClick')},2000);
@@ -83,6 +72,18 @@ function startGame() {
         }
     }, 10);
 }
+
+//Player movement keyboard trigger//
+//(what rhymes with trigger? (those who know 💀))
+
+let keys = {};
+document.addEventListener('keydown', e => {
+    keys[e.key.toLowerCase()] = true;
+});
+document.addEventListener('keyup', e => {
+    keys[e.key.toLowerCase()] = false;
+});
+
 function playerMovement(){
     checkCollision();
 
