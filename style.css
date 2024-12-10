@@ -19,6 +19,14 @@ body {
     color:white;
     text-shadow: 0 0 4px white;
     font-size: 1.25em;
+
+    opacity: 0%;
+}
+
+#bestTime {
+    color:white;
+    text-shadow: 0 0 4px white;
+    font-size: 1.25em;
 }
 
 #credits{

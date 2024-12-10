@@ -8,14 +8,20 @@ const main = document.querySelector('#main');
 const statsDiv = document.querySelector('#statsDiv');
 const scoreDisplay = document.querySelector('#scoreDisplay');
 const goals = document.querySelectorAll('.goal');
-const timeDisplay = document.querySelector("#timeDisplay");
-const completionTime = document.querySelector("#completionTime");
+const timeDisplay = document.querySelector('#timeDisplay');
+const completionTime = document.querySelector('#completionTime');
+const bestTime = document.querySelector('#bestTime');
 
 let score = 0;
+let timePassed;
 
 let enemyMovementInterval;
 let playerMovementInterval;
-let timeInterval
+let timeInterval;
+
+if(parseInt(document.cookie.replace('bestTime=', ''))){
+    bestTime.innerHTML = `Your best time: ${formatTime(parseInt(document.cookie.replace('bestTime=', '')))}`;
+}
 
 updateScore();
 
@@ -49,23 +55,14 @@ startButton.addEventListener('click', e => {
     //Timer
     let timeStart = Date.now();
     timeInterval = setInterval(() => {
-        let timePassed = Math.floor((Date.now() - timeStart)/10);
-        if(Math.floor(timePassed/6000)%60 < 1){
-            timeDisplay.innerHTML = `${Math.floor(timePassed/100)%60}.${Math.floor(timePassed%100)}`;
-        }else{
-            if(Math.floor(timePassed/100)%60 < 10){
-                timeDisplay.innerHTML = `${Math.floor(timePassed/6000)%60}:0${Math.floor(timePassed/100)%60}.${Math.floor(timePassed%100)}`
-            }else{
-                timeDisplay.innerHTML = `${Math.floor(timePassed/6000)%60}:${Math.floor(timePassed/100)%60}.${Math.floor(timePassed%100)}`
-            }
-        }
+        timePassed = Math.floor((Date.now() - timeStart)/10);
+        timeDisplay.innerHTML = formatTime(timePassed);
 
         if(Math.floor(timePassed/6000) >= 60){
-            timeDisplay.innerHTML = 'skill issue';
+            timeDisplay.innerHTML = "skill issue";
         }
     }, 10);
 });
-
 
 player.movementBrakes = {resetBrakes: function(){
     player.movementBrakes.right = false;
@@ -187,13 +184,35 @@ function updateScore(){
     scoreDisplay.innerHTML = `${score}/${goals.length}`;
 }
 
+function formatTime(rawTime){
+    if(Math.floor(rawTime/6000)%60 < 1){
+        return `${Math.floor(rawTime/100)%60}.${Math.floor(rawTime%100)}`;
+    }else{
+        if(Math.floor(rawTime/100)%60 < 10){
+            return `${Math.floor(rawTime/6000)%60}:0${Math.floor(rawTime/100)%60}.${Math.floor(rawTime%100)}`;
+        }else{
+            return `${Math.floor(rawTime/6000)%60}:${Math.floor(rawTime/100)%60}.${Math.floor(rawTime%100)}`;
+        }
+    }
+}
+
 function endGame(){
     if(score == goals.length){
         //stop the game
         clearInterval(playerMovementInterval);
         clearInterval(enemyMovementInterval);
         clearInterval(timeInterval);
+
+        //check score
         completionTime.innerHTML = `Your time: ${timeDisplay.innerHTML}`;
+
+        let cookieBestTime = parseInt(document.cookie.replace('bestTime=', ''));
+
+        if(!cookieBestTime || cookieBestTime > timePassed){
+            document.cookie = `bestTime=${timePassed}`;
+            bestTime.innerHTML = `Your best time: ${formatTime(timePassed)}`;
+        }
+
         //fadeout animation
         for (const actor of actors) {
             if(actor.classList.contains('goal')) continue;
@@ -201,16 +220,26 @@ function endGame(){
         }
         player.style.animation = 'lowTaperFade 2s reverse';
         statsDiv.style.animation = 'lowTaperFade 2s reverse';
+        completionTime.style.animation = 'lowTaperFade 2s';
         setTimeout(() => {
             for (const actor of actors) {
                 actor.style.setProperty('opacity','0%');
             } 
             player.style.setProperty('opacity','0%');
             statsDiv.style.setProperty('opacity','0%');
+            main.style.setProperty('opacity', '100%');
+            completionTime.style.setProperty('opacity','100%');
         },2000);
 
         //show end screen
         main.style.animation = 'lowTaperFade 2s';
-        main.style.setProperty('opacity', '100%');
+        completionTime.style.animation = 'lowTaperFade 2s';
     }
 }
+
+/*
+function clearCookies(){
+    // Reset cookies; For development use only! Uncomment and call in console to use.
+    document.cookie = 'bestTime=;expires=Thu, 01 Jan 1970 00:00:00 UTC'; 
+}
+*/
