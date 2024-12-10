@@ -6,6 +6,9 @@
 
 body {
     background-color: black;
+
+    /* \/ turn off scroll bars \/ */
+    overflow: hidden;
 }
 
 #title {
