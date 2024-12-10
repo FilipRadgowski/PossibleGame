@@ -25,7 +25,27 @@ if(parseInt(document.cookie.replace('bestTime=', ''))){
 
 updateScore();
 
-startButton.addEventListener('click', e => {
+startButton.addEventListener('click', startGame);
+
+player.movementBrakes = {resetBrakes: function(){
+    player.movementBrakes.right = false;
+    player.movementBrakes.left = false;
+    player.movementBrakes.up = false;
+    player.movementBrakes.down = false;
+}};
+
+//Player movement keyboard trigger//
+//(what rhymes with trigger? (those who know 💀))
+
+let keys = {};
+document.addEventListener('keydown', e => {
+    keys[e.key.toLowerCase()] = true;
+});
+document.addEventListener('keyup', e => {
+    keys[e.key.toLowerCase()] = false;
+});
+
+function startGame() {
     startButton.classList.add('pulsingClick');
     setTimeout(() => {startButton.classList.remove('pulsingClick')},2000);
     enemyMovementInterval = setInterval(moveEnemy, 10);
@@ -62,26 +82,7 @@ startButton.addEventListener('click', e => {
             timeDisplay.innerHTML = "skill issue";
         }
     }, 10);
-});
-
-player.movementBrakes = {resetBrakes: function(){
-    player.movementBrakes.right = false;
-    player.movementBrakes.left = false;
-    player.movementBrakes.up = false;
-    player.movementBrakes.down = false;
-}};
-
-//Player movement keyboard trigger//
-//(what rhymes with trigger? (those who know 💀))
-
-let keys = {};
-document.addEventListener('keydown', e => {
-    keys[e.key.toLowerCase()] = true;
-});
-document.addEventListener('keyup', e => {
-    keys[e.key.toLowerCase()] = false;
-});
-
+}
 function playerMovement(){
     checkCollision();
 
@@ -176,6 +177,10 @@ function directionalCollision(playerRect, actorRect){
 }
 
 function resetPlayerPosition(){
+    document.body.style.animation = "playerDeath 1s";
+    setTimeout(() => {
+        document.body.style.animation = "";
+    },1000);
     player.style.setProperty('top', `${window.innerHeight/2}px`);
     player.style.setProperty('left', '10px');
 }
@@ -232,6 +237,14 @@ function endGame(){
         //show end screen
         main.style.animation = 'lowTaperFade 2s';
         completionTime.style.animation = 'lowTaperFade 2s';
+        startButton.removeEventListener("click",startGame);
+        startButton.innerHTML="Back to Title Screen";
+        startButton.classList.remove('hidden');
+        startButton.style.animation= 'lowTaperFade 2s';
+        startButton.addEventListener("click", e => {
+            location.reload();
+            
+        })
     }
 }
 
