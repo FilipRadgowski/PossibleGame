@@ -132,7 +132,24 @@ body {
         box-shadow: 0 0 7px beige;
     }
 }
-
+@keyframes playerDeath {
+    0% {
+        background-color:#690202; 
+    }
+    25% {
+        background-color: #ff0000;
+    }
+    50% {
+        background-color: #690202;
+    }
+    75% {
+        background-color:  #3d0101;
+    }
+    100% { 
+        background-color: black;
+    }
+    
+}
 .pulsingClick {
     animation: pulsingclick 2s;
 }
