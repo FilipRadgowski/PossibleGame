@@ -8,10 +8,14 @@ const main = document.querySelector('#main');
 const statsDiv = document.querySelector('#statsDiv');
 const scoreDisplay = document.querySelector('#scoreDisplay');
 const goals = document.querySelectorAll('.goal');
-const timeText = document.querySelector("#timeDisplay");
-const yourTimeText = document.querySelector("#completionTime");
+const timeDisplay = document.querySelector("#timeDisplay");
+const completionTime = document.querySelector("#completionTime");
 
 let score = 0;
+
+let enemyMovementInterval;
+let playerMovementInterval;
+let timeInterval
 
 updateScore();
 
@@ -36,20 +40,30 @@ startButton.addEventListener('click', e => {
         statsDiv.style.animation = '';
         player.style.setProperty('opacity','100%');
         statsDiv.style.setProperty('opacity','100%');
-    },2000);
+    }, 2000);
     
     main.style.setProperty('opacity','0%');
     startButton.classList.add('hidden');
     //End game start animation
 
     //Timer
-    let msStart = Date.now();
+    let timeStart = Date.now();
     timeInterval = setInterval(() => {
-        let secondsPassed = (Date.now() - msStart)/1000;
-        timeText.innerHTML = Math.floor(secondsPassed/3600) + "h:" + Math.floor(secondsPassed/60)%60 + "m:" + Math.floor(secondsPassed%60)+"s";
-    },10);
-    
+        let timePassed = Math.floor((Date.now() - timeStart)/10);
+        if(Math.floor(timePassed/6000)%60 < 1){
+            timeDisplay.innerHTML = `${Math.floor(timePassed/100)%60}.${Math.floor(timePassed%100)}`;
+        }else{
+            if(Math.floor(timePassed/100)%60 < 10){
+                timeDisplay.innerHTML = `${Math.floor(timePassed/6000)%60}:0${Math.floor(timePassed/100)%60}.${Math.floor(timePassed%100)}`
+            }else{
+                timeDisplay.innerHTML = `${Math.floor(timePassed/6000)%60}:${Math.floor(timePassed/100)%60}.${Math.floor(timePassed%100)}`
+            }
+        }
 
+        if(Math.floor(timePassed/6000) >= 60){
+            timeDisplay.innerHTML = 'skill issue';
+        }
+    }, 10);
 });
 
 
@@ -179,7 +193,7 @@ function endGame(){
         clearInterval(playerMovementInterval);
         clearInterval(enemyMovementInterval);
         clearInterval(timeInterval);
-        yourTimeText.innerHTML = "Your time: "+ timeText.innerHTML;
+        completionTime.innerHTML = `Your time: ${timeDisplay.innerHTML}`;
         //fadeout animation
         for (const actor of actors) {
             if(actor.classList.contains('goal')) continue;

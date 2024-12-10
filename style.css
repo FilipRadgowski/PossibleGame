@@ -15,6 +15,12 @@ body {
     text-shadow: 0 0 4px beige;
 }
 
+#completionTime {
+    color:white;
+    text-shadow: 0 0 4px white;
+    font-size: 1.25em;
+}
+
 #credits{
     max-width: fit-content;
     margin-inline: auto;
@@ -49,10 +55,9 @@ body {
 
     opacity:0%;
 }
-#completionTime {
-    color:white;
-    text-shadow: 0 0 4px white;
-    font-size: 1.25em;
+
+#timeDisplay {
+    scale: 60%;
 }
 
 @keyframes buttonHover {
