@@ -187,13 +187,11 @@ function updateScore(){
 function formatTime(rawTime){
     if(Math.floor(rawTime/6000)%60 < 1){
         return `${Math.floor(rawTime/100)%60}.${Math.floor(rawTime%100)}`;
-    }else{
-        if(Math.floor(rawTime/100)%60 < 10){
-            return `${Math.floor(rawTime/6000)%60}:0${Math.floor(rawTime/100)%60}.${Math.floor(rawTime%100)}`;
-        }else{
-            return `${Math.floor(rawTime/6000)%60}:${Math.floor(rawTime/100)%60}.${Math.floor(rawTime%100)}`;
-        }
     }
+    if(Math.floor(rawTime/100)%60 < 10){
+        return `${Math.floor(rawTime/6000)%60}:0${Math.floor(rawTime/100)%60}.${Math.floor(rawTime%100)}`;
+    }
+    return `${Math.floor(rawTime/6000)%60}:${Math.floor(rawTime/100)%60}.${Math.floor(rawTime%100)}`;
 }
 
 function endGame(){
